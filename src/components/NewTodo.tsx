@@ -1,18 +1,20 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
+import StoreContext from "../stores/store-context";
 import classes from './NewTodo.module.css';
 
-const NewTodo: React.FC<{onAddTodo: (text: string) => void}> = (props: any) => {
+const NewTodo: React.FC<any> = () => {
     const inputTodoRef = useRef<HTMLInputElement>(null);
+    const storeCtx = useContext(StoreContext);
     const submitHandler = (event: React.FormEvent) => {
         event.preventDefault();
 
-        const newTodoText = inputTodoRef.current?.value;
+        const newTodoText = inputTodoRef.current!.value;
 
         if(newTodoText?.trim().length === 0) {
             return;
         } 
         
-        props.onAddTodo(newTodoText);
+        storeCtx.addTodoItem(newTodoText);
     }
     return (
         <form onSubmit={submitHandler} className={classes.form}>

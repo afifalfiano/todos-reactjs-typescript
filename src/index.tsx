@@ -2,9 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { StoreContextProvider } from './stores/store-context';
 
 ReactDOM.render(
-    <App />,
+  <StoreContextProvider>
+    <App />
+  </StoreContextProvider>,
   document.getElementById('root')
 );
 
